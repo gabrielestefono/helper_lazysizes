@@ -1,0 +1,21 @@
+.container{
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.classe1, .classe2{
+	width: 50vw;
+	height: 50vh;
+	background-repeat: no-repeat;
+	background-position: 50%;
+	background-size: cover;
+}
+
+.classe1{
+	background-image: url(../img/teste.png);
+}
+
+.classe2{
+	background-image: url(../img/teste2.png);
+}

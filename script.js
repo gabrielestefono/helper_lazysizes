@@ -13,4 +13,13 @@ allElements.forEach((element) => {
   	}
 });
 
-console.log(elementsWithBackground);
+/* Transformar as classes dos elementos selecionados em string e passar para um novo array */
+
+const elementsWithBackgroundString = []
+
+elementsWithBackground.forEach((element) => {
+	const elementClass = element.className;
+	elementsWithBackgroundString.push(elementClass);
+});
+
+console.log(elementsWithBackgroundString);

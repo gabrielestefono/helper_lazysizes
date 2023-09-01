@@ -48,3 +48,16 @@ elementsWithBackgroundImage.forEach((element) => {
 
 console.log(elementsWithBackgroundImageRelative);
 
+/* Verificar o tipo de elemento da classe */
+
+const elementsWithBackgroundImageType = [];
+
+elementsWithBackgroundString.forEach((element) => {
+	/* Se a classe for composta por mais de uma classe, pegar apenas a primeira */
+	const elementClass = element.split(' ')[0];
+	const elementQuery = document.querySelector(`.${elementClass}`);
+	const elementType = elementQuery.tagName;
+	elementsWithBackgroundImageType.push(elementType.toLowerCase());
+});
+
+console.log(elementsWithBackgroundImageType);

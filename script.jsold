@@ -22,6 +22,8 @@ elementsWithBackground.forEach((element) => {
 	elementsWithBackgroundString.push(elementClass);
 });
 
+console.log(elementsWithBackgroundString);
+
 /* Pegar o link da imagem de background */
 
 const elementsWithBackgroundImage = [];
@@ -44,6 +46,8 @@ elementsWithBackgroundImage.forEach((element) => {
 	elementsWithBackgroundImageRelative.push(elementUrlRelative);
 });
 
+console.log(elementsWithBackgroundImageRelative);
+
 /* Verificar o tipo de elemento da classe */
 
 const elementsWithBackgroundImageType = [];
@@ -56,7 +60,20 @@ elementsWithBackgroundString.forEach((element) => {
 	elementsWithBackgroundImageType.push(elementType.toLowerCase());
 });
 
-/* Transformar os elementos em string */
+console.log(elementsWithBackgroundImageType);
+
+/* Verificar se cada uma das classes possui o atributo id */
+
+const elementsWithBackgroundImageId = [];
+
+elementsWithBackgroundString.forEach((element) => {
+	const elementClass = element.split(' ')[0];
+	const elementQuery = document.querySelector(`.${elementClass}`);
+	const elementId = elementQuery.id;
+	elementsWithBackgroundImageId.push(elementId);
+});
+
+console.log(elementsWithBackgroundImageId);
 
 function elementToString(el) {
   const tmpDiv = document.createElement('div');
@@ -71,74 +88,4 @@ elementsWithBackground.forEach((element) => {
 	elementsWithBackgroundImageHTML.push(elementHTML);
 });
 
-/* Juntar tudo em uma só string */
-
-let juntarTudo = (tag, imagem, elementoEmString) => {
-	let tipo = `></${tag}>`;
-	tipo = `data-bg="${imagem}"` + tipo;
-	let elemento = elementoEmString.replace(`></${tag}>`, tipo);
-	return elemento;
-}
-
-/* Criar um array com os elementos */
-
-let array = [];
-
-elementsWithBackgroundString.forEach((element, index) => {
-	let elementoParaCopiar = juntarTudo(elementsWithBackgroundImageType[index], elementsWithBackgroundImageRelative[index], elementsWithBackgroundImageHTML[index]);
-	array.push(elementoParaCopiar);
-});
-
-let elemento = {}
-
-array.forEach((element, index) => {
-    elemento[index.toString()] = element;
-});
-
-/* Transformar o objeto em json */
-
-/* Criar o JSON formatado manualmente */
-
-let jsonFormatted = "{\n";
-Object.keys(elemento).forEach((key, index, array) => {
-    jsonFormatted += `    ${key}: ${elemento[key]}`;
-    if (index < array.length - 1) {
-        jsonFormatted += ',';
-    }
-    jsonFormatted += '\n';
-});
-jsonFormatted += "}";
-
-/* Exportar o JSON formatado */
-
-let exportarJSON = () => {
-	const element = document.createElement('button');
-	element.style.width = '500px';
-	element.style.height = '500px';
-	element.style.position = 'absolute';
-	element.style.top = '0';
-	element.style.left = '0';
-	element.style.zIndex = '99'
-	element.style.backgroundColor = 'red';
-	element.style.color = 'white';
-	element.style.fontSize = '50px';
-	element.style.fontWeight = 'bold';
-	element.style.border = 'none';
-	element.style.outline = 'none';
-	element.style.cursor = 'pointer';
-	element.style.display = 'flex';
-	element.style.justifyContent = 'center';
-	element.style.alignItems = 'center';
-	element.style.fontFamily = 'sans-serif';
-	element.innerHTML = 'Exportar JSON';
-	document.body.appendChild(element);
-	element.addEventListener('click', () => {
-		const element = document.createElement('a');
-		const file = new Blob([jsonFormatted], {type: 'application/json'});
-		element.href = URL.createObjectURL(file);
-		element.download = 'json.json';
-		element.click();
-	});
-}
-
-exportarJSON();
+console.log(elementsWithBackgroundImageHTML);

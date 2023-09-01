@@ -61,3 +61,17 @@ elementsWithBackgroundString.forEach((element) => {
 });
 
 console.log(elementsWithBackgroundImageType);
+
+/* Verificar se cada uma das classes possui o atributo id */
+
+const elementsWithBackgroundImageId = [];
+
+elementsWithBackgroundString.forEach((element) => {
+	const elementClass = element.split(' ')[0];
+	const elementQuery = document.querySelector(`.${elementClass}`);
+	const elementId = elementQuery.id;
+	elementsWithBackgroundImageId.push(elementId);
+});
+
+console.log(elementsWithBackgroundImageId);
+

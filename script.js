@@ -23,3 +23,28 @@ elementsWithBackground.forEach((element) => {
 });
 
 console.log(elementsWithBackgroundString);
+
+/* Pegar o link da imagem de background */
+
+const elementsWithBackgroundImage = [];
+
+elementsWithBackground.forEach((element) => {
+	const elementStyle = getComputedStyle(element);
+	const backgroundImage = elementStyle.getPropertyValue('background-image');
+	elementsWithBackgroundImage.push(backgroundImage);
+});
+
+/* Remover o caminho absoluto mantendo apenas o caminho relativo */
+
+const elementsWithBackgroundImageRelative = [];
+const urlAtual = window.location.href;
+
+
+elementsWithBackgroundImage.forEach((element) => {
+	const elementUrl = element.replace('url("', '').replace('")', '');
+	const elementUrlRelative = elementUrl.replace(urlAtual, '');
+	elementsWithBackgroundImageRelative.push(elementUrlRelative);
+});
+
+console.log(elementsWithBackgroundImageRelative);
+
